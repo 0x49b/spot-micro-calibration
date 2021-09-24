@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spotmicro Configuration ROS Environment</title>
+    <link rel="icon" type="image/png" href="http://cdn.onlinewebfonts.com/svg/img_130996.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <style>
+        html, body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+        }
+
+        th, td {
+            border-collapse: collapse;
+            border: 1px solid black;
+            max-width: 100px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        th {
+            vertical-align: bottom;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        input {
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .description {
+            min-width: 250px;
+            text-align: left;
+            padding-left: 10px;
+        }
+
+        /* Chrome, Safari, Edge, Opera */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+        #copied-indicator {
+            margin-left: 10px;
+            opacity: 0;
+            transition: 1s opacity;
+        }
+
+        .copy-input {
+            margin-top: 10px;
+        }
+
+        .bold-text > input {
+            font-weight: 800;
+        }
+
+        textarea {
+            overflow: hidden;
+            resize: none;
+        }
+
+        .max-degree-input {
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .config-output {
+        }
+
+        .config-output-title {
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+        }
+
+        #max-ang {
+            max-width: 55px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h2>SpotMicro ROS Configuration</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>Servo</th>
+        <th>Position 1<br/>PWM</th>
+        <th>Position 2<br/>PWM</th>
+        <th>Position 1<br/>Angle</th>
+        <th>Position 2<br/>Angle</th>
+        <th>Slope<br/>(pwm/deg)</th>
+        <th><b>Center<br/>PWM Val</b></th>
+        <th><b>Calculated Angle at Center PWM Value</b></th>
+        <th>PWM val for negative max servo angle from center</th>
+        <th>PWM val for max servo angle from center</th>
+        <th><b>Range</b></th>
+        <th><b>Direction</b></th>
+        <th class="description">Link Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+    <tr>
+        <td>1</td>
+        <td><input class="rf-3" type="number" name="rf-3-pos-1-pwm" id="rf-3-pos-1-pwm" value="107"></td>
+        <td><input class="rf-3" type="number" name="rf-3-pos-2-pwm" id="rf-3-pos-2-pwm" value="310"></td>
+        <td><input class="rf-3" type="number" name="rf-3-pos-1-angle" id="rf-3-pos-1-angle" value="0"></td>
+        <td><input class="rf-3" type="number" name="rf-3-pos-2-angle" id="rf-3-pos-2-angle" value="90"></td>
+        <td><input class="rf-3" type="number" name="rf-3-slope" id="rf-3-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rf-3" type="number" name="rf-3-center-pwm" id="rf-3-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rf-3" type="number" name="rf-3-center-angle-calc"
+                                     id="rf-3-center-angle-calc"></td>
+        <td><input class="rf-3" type="number" name="rf-3-pwm-negative-max" id="rf-3-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rf-3" type="number" name="rf-3-pwm-positive-max" id="rf-3-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rf-3" type="number" name="rf-3-range" id="rf-3-range" value="372.2"></td>
+        <td class="bold-text"><input class="rf-3" type="number" name="rf-3-direction" id="rf-3-direction" value="1">
+        </td>
+        <td class="description">Right front lower leg</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td><input class="rf-2" type="number" name="rf-2-pos-1-pwm" id="rf-2-pos-1-pwm" value="107"></td>
+        <td><input class="rf-2" type="number" name="rf-2-pos-2-pwm" id="rf-2-pos-2-pwm" value="310"></td>
+        <td><input class="rf-2" type="number" name="rf-2-pos-1-angle" id="rf-2-pos-1-angle" value="0"></td>
+        <td><input class="rf-2" type="number" name="rf-2-pos-2-angle" id="rf-2-pos-2-angle" value="90"></td>
+        <td><input class="rf-2" type="number" name="rf-2-slope" id="rf-2-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rf-2" type="number" name="rf-2-center-pwm" id="rf-2-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rf-2" type="number" name="rf-2-center-angle-calc"
+                                     id="rf-2-center-angle-calc"></td>
+        <td><input class="rf-2" type="number" name="rf-2-pwm-negative-max" id="rf-2-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rf-2" type="number" name="rf-2-pwm-positive-max" id="rf-2-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rf-2" type="number" name="rf-2-range" id="rf-2-range" value="372.2"></td>
+        <td class="bold-text"><input class="rf-2" type="number" name="rf-2-direction" id="rf-2-direction" value="1">
+        </td>
+        <td class="description">Right front upper leg</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td><input class="rf-1" type="number" name="rf-1-pos-1-pwm" id="rf-1-pos-1-pwm" value="107"></td>
+        <td><input class="rf-1" type="number" name="rf-1-pos-2-pwm" id="rf-1-pos-2-pwm" value="310"></td>
+        <td><input class="rf-1" type="number" name="rf-1-pos-1-angle" id="rf-1-pos-1-angle" value="0"></td>
+        <td><input class="rf-1" type="number" name="rf-1-pos-2-angle" id="rf-1-pos-2-angle" value="90"></td>
+        <td><input class="rf-1" type="number" name="rf-1-slope" id="rf-1-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rf-1" type="number" name="rf-1-center-pwm" id="rf-1-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rf-1" type="number" name="rf-1-center-angle-calc"
+                                     id="rf-1-center-angle-calc"></td>
+        <td><input class="rf-1" type="number" name="rf-1-pwm-negative-max" id="rf-1-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rf-1" type="number" name="rf-1-pwm-positive-max" id="rf-1-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rf-1" type="number" name="rf-1-range" id="rf-1-range" value="372.2"></td>
+        <td class="bold-text"><input class="rf-1" type="number" name="rf-1-direction" id="rf-1-direction" value="1">
+        </td>
+        <td class="description">Right front hip</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td><input class="rb-3" type="number" name="rb-3-pos-1-pwm" id="rb-3-pos-1-pwm" value="107"></td>
+        <td><input class="rb-3" type="number" name="rb-3-pos-2-pwm" id="rb-3-pos-2-pwm" value="310"></td>
+        <td><input class="rb-3" type="number" name="rb-3-pos-1-angle" id="rb-3-pos-1-angle" value="0"></td>
+        <td><input class="rb-3" type="number" name="rb-3-pos-2-angle" id="rb-3-pos-2-angle" value="90"></td>
+        <td><input class="rb-3" type="number" name="rb-3-slope" id="rb-3-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rb-3" type="number" name="rb-3-center-pwm" id="rb-3-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rb-3" type="number" name="rb-3-center-angle-calc"
+                                     id="rb-3-center-angle-calc"></td>
+        <td><input class="rb-3" type="number" name="rb-3-pwm-negative-max" id="rb-3-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rb-3" type="number" name="rb-3-pwm-positive-max" id="rb-3-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rb-3" type="number" name="rb-3-range" id="rb-3-range" value="372.2"></td>
+        <td class="bold-text"><input class="rb-3" type="number" name="rb-3-direction" id="rb-3-direction" value="1">
+        </td>
+        <td class="description">Right back lower leg</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td><input class="rb-2" type="number" name="rb-2-pos-1-pwm" id="rb-2-pos-1-pwm" value="107"></td>
+        <td><input class="rb-2" type="number" name="rb-2-pos-2-pwm" id="rb-2-pos-2-pwm" value="310"></td>
+        <td><input class="rb-2" type="number" name="rb-2-pos-1-angle" id="rb-2-pos-1-angle" value="0"></td>
+        <td><input class="rb-2" type="number" name="rb-2-pos-2-angle" id="rb-2-pos-2-angle" value="90"></td>
+        <td><input class="rb-2" type="number" name="rb-2-slope" id="rb-2-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rb-2" type="number" name="rb-2-center-pwm" id="rb-2-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rb-2" type="number" name="rb-2-center-angle-calc"
+                                     id="rb-2-center-angle-calc"></td>
+        <td><input class="rb-2" type="number" name="rb-2-pwm-negative-max" id="rb-2-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rb-2" type="number" name="rb-2-pwm-positive-max" id="rb-2-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rb-2" type="number" name="rb-2-range" id="rb-2-range" value="372.2"></td>
+        <td class="bold-text"><input class="rb-2" type="number" name="rb-2-direction" id="rb-2-direction" value="1">
+        </td>
+        <td class="description">Right back upper leg</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td><input class="rb-1" type="number" name="rb-1-pos-1-pwm" id="rb-1-pos-1-pwm" value="107"></td>
+        <td><input class="rb-1" type="number" name="rb-1-pos-2-pwm" id="rb-1-pos-2-pwm" value="310"></td>
+        <td><input class="rb-1" type="number" name="rb-1-pos-1-angle" id="rb-1-pos-1-angle" value="0"></td>
+        <td><input class="rb-1" type="number" name="rb-1-pos-2-angle" id="rb-1-pos-2-angle" value="90"></td>
+        <td><input class="rb-1" type="number" name="rb-1-slope" id="rb-1-slope" value="2.26"></td>
+        <td class="bold-text"><input class="rb-1" type="number" name="rb-1-center-pwm" id="rb-1-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="rb-1" type="number" name="rb-1-center-angle-calc"
+                                     id="rb-1-center-angle-calc"></td>
+        <td><input class="rb-1" type="number" name="rb-1-pwm-negative-max" id="rb-1-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="rb-1" type="number" name="rb-1-pwm-positive-max" id="rb-1-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="rb-1" type="number" name="rb-1-range" id="rb-1-range" value="372.2"></td>
+        <td class="bold-text"><input class="rb-1" type="number" name="rb-1-direction" id="rb-1-direction" value="1">
+        </td>
+        <td class="description">Right back hip</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td><input class="lb-3" type="number" name="lb-3-pos-1-pwm" id="lb-3-pos-1-pwm" value="107"></td>
+        <td><input class="lb-3" type="number" name="lb-3-pos-2-pwm" id="lb-3-pos-2-pwm" value="310"></td>
+        <td><input class="lb-3" type="number" name="lb-3-pos-1-angle" id="lb-3-pos-1-angle" value="0"></td>
+        <td><input class="lb-3" type="number" name="lb-3-pos-2-angle" id="lb-3-pos-2-angle" value="90"></td>
+        <td><input class="lb-3" type="number" name="lb-3-slope" id="lb-3-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lb-3" type="number" name="lb-3-center-pwm" id="lb-3-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lb-3" type="number" name="lb-3-center-angle-calc"
+                                     id="lb-3-center-angle-calc"></td>
+        <td><input class="lb-3" type="number" name="lb-3-pwm-negative-max" id="lb-3-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lb-3" type="number" name="lb-3-pwm-positive-max" id="lb-3-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lb-3" type="number" name="lb-3-range" id="lb-3-range" value="372.2"></td>
+        <td class="bold-text"><input class="lb-3" type="number" name="lb-3-direction" id="lb-3-direction" value="1">
+        </td>
+        <td class="description">Left back lower leg</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td><input class="lb-2" type="number" name="lb-2-pos-1-pwm" id="lb-2-pos-1-pwm" value="107"></td>
+        <td><input class="lb-2" type="number" name="lb-2-pos-2-pwm" id="lb-2-pos-2-pwm" value="310"></td>
+        <td><input class="lb-2" type="number" name="lb-2-pos-1-angle" id="lb-2-pos-1-angle" value="0"></td>
+        <td><input class="lb-2" type="number" name="lb-2-pos-2-angle" id="lb-2-pos-2-angle" value="90"></td>
+        <td><input class="lb-2" type="number" name="lb-2-slope" id="lb-2-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lb-2" type="number" name="lb-2-center-pwm" id="lb-2-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lb-2" type="number" name="lb-2-center-angle-calc"
+                                     id="lb-2-center-angle-calc"></td>
+        <td><input class="lb-2" type="number" name="lb-2-pwm-negative-max" id="lb-2-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lb-2" type="number" name="lb-2-pwm-positive-max" id="lb-2-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lb-2" type="number" name="lb-2-range" id="lb-2-range" value="372.2"></td>
+        <td class="bold-text"><input class="lb-2" type="number" name="lb-2-direction" id="lb-2-direction" value="1">
+        </td>
+        <td class="description">Left back upper leg</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td><input class="lb-1" type="number" name="lb-1-pos-1-pwm" id="lb-1-pos-1-pwm" value="107"></td>
+        <td><input class="lb-1" type="number" name="lb-1-pos-2-pwm" id="lb-1-pos-2-pwm" value="310"></td>
+        <td><input class="lb-1" type="number" name="lb-1-pos-1-angle" id="lb-1-pos-1-angle" value="0"></td>
+        <td><input class="lb-1" type="number" name="lb-1-pos-2-angle" id="lb-1-pos-2-angle" value="90"></td>
+        <td><input class="lb-1" type="number" name="lb-1-slope" id="lb-1-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lb-1" type="number" name="lb-1-center-pwm" id="lb-1-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lb-1" type="number" name="lb-1-center-angle-calc"
+                                     id="lb-1-center-angle-calc"></td>
+        <td><input class="lb-1" type="number" name="lb-1-pwm-negative-max" id="lb-1-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lb-1" type="number" name="lb-1-pwm-positive-max" id="lb-1-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lb-1" type="number" name="lb-1-range" id="lb-1-range" value="372.2"></td>
+        <td class="bold-text"><input class="lb-1" type="number" name="lb-1-direction" id="lb-1-direction" value="1">
+        </td>
+        <td class="description">Left back hip</td>
+    </tr>
+    <tr>
+        <td>10</td>
+        <td><input class="lf-3" type="number" name="lf-3-pos-1-pwm" id="lf-3-pos-1-pwm" value="107"></td>
+        <td><input class="lf-3" type="number" name="lf-3-pos-2-pwm" id="lf-3-pos-2-pwm" value="310"></td>
+        <td><input class="lf-3" type="number" name="lf-3-pos-1-angle" id="lf-3-pos-1-angle" value="0"></td>
+        <td><input class="lf-3" type="number" name="lf-3-pos-2-angle" id="lf-3-pos-2-angle" value="90"></td>
+        <td><input class="lf-3" type="number" name="lf-3-slope" id="lf-3-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lf-3" type="number" name="lf-3-center-pwm" id="lf-3-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lf-3" type="number" name="lf-3-center-angle-calc"
+                                     id="lf-3-center-angle-calc"></td>
+        <td><input class="lf-3" type="number" name="lf-3-pwm-negative-max" id="lf-3-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lf-3" type="number" name="lf-3-pwm-positive-max" id="lf-3-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lf-3" type="number" name="lf-3-range" id="lf-3-range" value="372.2"></td>
+        <td class="bold-text"><input class="lf-3" type="number" name="lf-3-direction" id="lf-3-direction" value="1">
+        </td>
+        <td class="description">Left front lower leg</td>
+    </tr>
+    <tr>
+        <td>11</td>
+        <td><input class="lf-2" type="number" name="lf-2-pos-1-pwm" id="lf-2-pos-1-pwm" value="107"></td>
+        <td><input class="lf-2" type="number" name="lf-2-pos-2-pwm" id="lf-2-pos-2-pwm" value="310"></td>
+        <td><input class="lf-2" type="number" name="lf-2-pos-1-angle" id="lf-2-pos-1-angle" value="0"></td>
+        <td><input class="lf-2" type="number" name="lf-2-pos-2-angle" id="lf-2-pos-2-angle" value="90"></td>
+        <td><input class="lf-2" type="number" name="lf-2-slope" id="lf-2-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lf-2" type="number" name="lf-2-center-pwm" id="lf-2-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lf-2" type="number" name="lf-2-center-angle-calc"
+                                     id="lf-2-center-angle-calc"></td>
+        <td><input class="lf-2" type="number" name="lf-2-pwm-negative-max" id="lf-2-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lf-2" type="number" name="lf-2-pwm-positive-max" id="lf-2-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lf-2" type="number" name="lf-2-range" id="lf-2-range" value="372.2"></td>
+        <td class="bold-text"><input class="lf-2" type="number" name="lf-2-direction" id="lf-2-direction" value="1">
+        </td>
+        <td class="description">Left front upper leg</td>
+    </tr>
+    <tr>
+        <td>12</td>
+        <td><input class="lf-1" type="number" name="lf-1-pos-1-pwm" id="lf-1-pos-1-pwm" value="107"></td>
+        <td><input class="lf-1" type="number" name="lf-1-pos-2-pwm" id="lf-1-pos-2-pwm" value="310"></td>
+        <td><input class="lf-1" type="number" name="lf-1-pos-1-angle" id="lf-1-pos-1-angle" value="0"></td>
+        <td><input class="lf-1" type="number" name="lf-1-pos-2-angle" id="lf-1-pos-2-angle" value="90"></td>
+        <td><input class="lf-1" type="number" name="lf-1-slope" id="lf-1-slope" value="2.26"></td>
+        <td class="bold-text"><input class="lf-1" type="number" name="lf-1-center-pwm" id="lf-1-center-pwm" value="306">
+        </td>
+        <td class="bold-text"><input class="lf-1" type="number" name="lf-1-center-angle-calc"
+                                     id="lf-1-center-angle-calc"></td>
+        <td><input class="lf-1" type="number" name="lf-1-pwm-negative-max" id="lf-1-pwm-negative-max" value="119.92">
+        </td>
+        <td><input class="lf-1" type="number" name="lf-1-pwm-positive-max" id="lf-1-pwm-positive-max" value="492.08">
+        </td>
+        <td class="bold-text"><input class="lf-1" type="number" name="lf-1-range" id="lf-1-range" value="372.2"></td>
+        <td class="bold-text"><input class="lf-1" type="number" name="lf-1-direction" id="lf-1-direction" value="1">
+        </td>
+        <td class="description">Left front hip</td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+<div class="max-degree-input">
+    <label for="max-ang">Max Permissible Servo Angle in degrees</label>
+    <input type="number" id="max-ang" name="max-ang" value="82.5">
+</div>
+
+<div class="config-output">
+    <div class="config-output-title">Generated Config</div>
+    <textarea cols="85" rows="13" id="config-textarea"></textarea>
+    <div class="copy-input">
+        <button onclick="copyToClipboard()">Copy</button>
+        <small id="copied-indicator">copied!</small>
+    </div>
+    <div>
+        <button onclick="saveConfig()">Save Config to file</button>
+    </div>
+</div>
+
+
+<script>
+
+    const groups = [
+        "rf-3",
+        "rf-2",
+        "rf-1",
+        "rb-3",
+        "rb-2",
+        "rb-1",
+        "lb-3",
+        "lb-2",
+        "lb-1",
+        "lf-3",
+        "lf-2",
+        "lf-1"]
+
+
+    class ConfigObject {
+        constructor(name = "",
+                    number = 0,
+                    pos1pwm = 0,
+                    pos2pwm = 0,
+                    pos1angle = 0,
+                    pos2angle = 0,
+                    slope = 0,
+                    centerpwmval = 0,
+                    calcangleatcenterpwm = 0,
+                    pwmvalnegativefromcenter = 0,
+                    pwmvalpositivefromcenter = 0,
+                    range = 0,
+                    direction = 0
+        ) {}
+    }
+
+
+    function saveConfig() {
+        let rows = []
+        let maxangle = document.getElementById("max-ang")
+        groups.forEach((className, i) => {
+            let pos1pwm = document.getElementById(className + "-pos-1-pwm")
+            let pos2pwn = document.getElementById(className + "-pos-2-pwm")
+            let pos1angle = document.getElementById(className + "-pos-1-angle")
+            let pos2angel = document.getElementById(className + "-pos-2-angle")
+            let slope = document.getElementById(className + "-slope")
+            let centerpwm = document.getElementById(className + "-center-pwm")
+            let centeranglecalc = document.getElementById(className + "-center-angle-calc")
+            let pwmnegativemax = document.getElementById(className + "-pwm-negative-max")
+            let pwmpositivemax = document.getElementById(className + "-pwm-positive-max")
+            let range = document.getElementById(className + "-range")
+            let direction = document.getElementById(className + "-direction")
+
+
+            let cfgobj = new ConfigObject()
+            cfgobj.name = className
+            cfgobj.number = i + 1
+            cfgobj.pos1pwm = parseFloat(pos1pwm.value)
+            cfgobj.pos2pwm = parseFloat(pos2pwn.value)
+            cfgobj.pos1angle = parseFloat(pos1angle.value)
+            cfgobj.pos2angle = parseFloat(pos2angel.value)
+            cfgobj.slope = parseFloat(slope.value)
+            cfgobj.centerpwmval = parseFloat(centerpwm.value)
+            cfgobj.calcangleatcenterpwm = parseFloat(centeranglecalc.value)
+            cfgobj.pwmvalnegativefromcenter = parseFloat(pwmnegativemax.value)
+            cfgobj.pwmvalpositivefromcenter = parseFloat(pwmpositivemax.value)
+            cfgobj.range = parseFloat(range.value)
+            cfgobj.direction = parseFloat(direction.value)
+
+            rows.push(cfgobj)
+
+
+        })
+
+        const jsonOutput = {
+            servo_max_angle_deg: maxangle.value,
+            rows
+        }
+
+        console.log(JSON.stringify(jsonOutput))
+    }
+
+    saveConfig()
+
+    document.body.style.backgroundColor = 'rgba(247,223,30, 1.0)'
+
+
+    function roundFloat(value) {
+        return Math.round((value + Number.EPSILON) * 100) / 100
+    }
+
+    function recalculate(className) {
+
+        let pos1pwm = document.getElementById(className + "-pos-1-pwm")
+        let pos2pwn = document.getElementById(className + "-pos-2-pwm")
+        let pos1angle = document.getElementById(className + "-pos-1-angle")
+        let pos2angel = document.getElementById(className + "-pos-2-angle")
+        let slope = document.getElementById(className + "-slope")
+
+
+        let centerpwm = document.getElementById(className + "-center-pwm")
+        let centeranglecalc = document.getElementById(className + "-center-angle-calc")
+        let pwmnegativemax = document.getElementById(className + "-pwm-negative-max")
+        let pwmpositivemax = document.getElementById(className + "-pwm-positive-max")
+        let range = document.getElementById(className + "-range")
+        let direction = document.getElementById(className + "-direction")
+        let maxangle = document.getElementById("max-ang")
+
+        slope.value = roundFloat((parseInt(pos2pwn.value) - parseInt(pos1pwm.value)) / (parseInt(pos2angel.value) - parseInt(pos1angle.value)))
+        centeranglecalc.value = roundFloat((parseFloat(centerpwm.value) - parseFloat(pos1pwm.value)) / (parseFloat(slope.value) + parseFloat(pos1angle.value)))
+        pwmnegativemax.value = roundFloat(((parseFloat(maxangle.value) * -1) * parseFloat(slope.value)) + parseFloat(centerpwm.value))
+        pwmpositivemax.value = roundFloat((parseFloat(maxangle.value) * parseFloat(slope.value)) + parseFloat(centerpwm.value))
+        range.value = roundFloat(Math.abs(parseFloat(pwmpositivemax.value) - parseFloat(pwmnegativemax.value)))
+        direction.value = Math.sign(slope.value) < 0 ? -1 : 1
+
+    }
+
+
+    function writeConfig() {
+        let maxangle = document.getElementById("max-ang")
+        const configTextarea = document.getElementById("config-textarea")
+        let config = "servo_max_angle_deg: " + maxangle.value + "\r\n"
+
+        groups.forEach((el, i) => config = config + createConfigForGroup(el, i + 1))
+
+        configTextarea.innerHTML = ''
+        configTextarea.innerHTML = config
+    }
+
+    const changeGroupname = (name) => name.toUpperCase().replace("-", "_");
+
+    function createConfigForGroup(group, num) {
+        let groupname = changeGroupname(group)
+        let centerpwm = document.getElementById(group + "-center-pwm")
+        let centeranglecalc = document.getElementById(group + "-center-angle-calc")
+        let direction = document.getElementById(group + "-direction")
+        let range = document.getElementById(group + "-range")
+
+        return groupname + ": {num: " + num + ",  center: " + centerpwm.value + ",range: " + range.value + ",direction:  " + direction.value + ", center_angle_deg:  " + centeranglecalc.value + "}\r\n"
+
+    }
+
+    function copyToClipboard() {
+        let configTextarea = document.getElementById("config-textarea")
+        navigator.clipboard.writeText(configTextarea.innerHTML)
+        let copyIndicator = document.getElementById("copied-indicator")
+        copyIndicator.style.opacity = '1'
+
+        setTimeout(() => {
+            copyIndicator.style.opacity = '0';
+        }, 1500)
+
+
+        var a = document.getElementById("a");
+        var file = new Blob([text], {type: type});
+        a.href = URL.createObjectURL(file);
+        a.download = name;
+    }
+
+
+    const inputs = document.getElementsByTagName("input")
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('input', (e) => {
+            recalculate(e.target.className);
+            writeConfig();
+        })
+    }
+
+    function calculateAll() {
+        groups.forEach(el => recalculate(el));
+    }
+
+    let maxangle = document.getElementById("max-ang")
+    maxangle.addEventListener('input', () => {
+        writeConfig();
+        calculateAll();
+    })
+
+    calculateAll()
+    writeConfig()
+
+</script>
+
+</body>
+</html>
